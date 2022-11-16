@@ -1,40 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% for movie in movies.results %}
+<div class="d-flex flex-wrap justify-content-center">
+{% for movie in movies %}
 <div cass='card-list'>
   <div class="card">
     <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">{{ movie.title }}</h5>
+      <p class="card-title">{{ movie.title }}</p>
     </div>
   </div>
 </div>
 {% endfor %}
+</div>
 {% endblock content %}
 
 {% block script %}
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
-    const API_KEY = '76c202108d9d00290dcdd6976646a51c'
-    
-    function showMovie() {
-      const URL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=ko-KR`
-      axios({
-        url: URL,
-        type: 'GET',
-        data: {
-          'movies': null,
-        }
-      })
-      .then((res) => {
-        this.movies = res.data
-        console.log(this.movies)
-      })
-   }
 
-   window.addEventListener('onLoad', showMovie())
-   
   </script>
 {% endblock script %}

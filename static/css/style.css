@@ -1,18 +1,18 @@
 .card-list{
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   margin: auto;
+  height: 600px;
+  width: 25%
 }
+
 .card{
-  height: 700px;
-  width: 400px;
+  height: 600px;
+  width: 300px;
   padding: 10px;
   margin: 10px;
 }
+
 .card-img-top{
-  width: 40%;
-  height: 500px; 
-  margin: auto;
-  margin-bottom: 40px;
+  height: 300px; 
 }
