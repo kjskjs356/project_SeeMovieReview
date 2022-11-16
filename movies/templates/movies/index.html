@@ -8,6 +8,7 @@
     <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="card-img-top" alt="...">
     <div class="card-body">
       <p class="card-title">{{ movie.title }}</p>
+      <a href="{% url 'movies:detail' movie.pk %}">[detail]</a>
     </div>
   </div>
 </div>

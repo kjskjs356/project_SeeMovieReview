@@ -3,7 +3,7 @@ from django.conf import settings
 
 # Create your models here.
 class Movie(models.Model):
-    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_articles')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
     title = models.CharField(max_length=100)
     released_date = models.DateField()
     popularity = models.FloatField()
