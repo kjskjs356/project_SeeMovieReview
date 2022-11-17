@@ -2,15 +2,41 @@
 
 {% block content %}
   <h1>영화 제목을 검색하세요.</h1>
-  <form action="">
-    <input type="text">
-    <button type='submit'>검색</button>
-  </form>
-  <div id="movie_list">
-
+  <div class="container">
+    <div class="d-flex flex-colum justify-content-center">
+      <form action="{% url 'movies:searched' %}" method='POST'>
+        {% csrf_token %}
+      <div class="row">
+          <input type="search" name="search">
+          <button type="submit">검색</button>
+      </form>
+      </div>
+    </div>
   </div>
 {% endblock content %}
 
 {% block script %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+{% comment %} console.log(123)
+const movie_list = document.querySelector('#movie_list')
+const inputTag = document.querySelector('#search')
 
+inputTag.addEventListener('input', function(event) {
+  event.preventDefault()
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  const name = document.getElementById(#search).value
+
+  axios({
+    method: 'get',
+      url: `/movies/search/`,
+  })
+    .then((res) {
+      console.log(res)
+    })
+})
+
+const movieTag = document.createElement('img') {% endcomment %}
+
+</script>
 {% endblock script %}

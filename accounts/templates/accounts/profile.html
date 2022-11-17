@@ -29,8 +29,8 @@
   {% endif %}
 
   <h2>{{ person.username }}이 작성한 모든 게시글</h2>
-  {% for article in person.article_set.all %}
-    <div>{{ article.title }}</div>
+  {% for movie in person.movie_set.all %}
+    <div>{{ movie.title }}</div>
   {% endfor %}
 
   <hr>
@@ -45,11 +45,11 @@
 
 
   <h2>{{ person.username }}이 좋아요 한 모든 게시글</h2>
-  {% for article in person.like_articles.all %}
-    <div>{{ article.title }}</div>
+  {% for movie in person.like_movies.all %}
+    <div>{{ movie.title }}</div>
   {% endfor %}
 
-  <a href="{% url 'articles:index' %}">back</a>
+  <a href="{% url 'movies:index' %}">back</a>
 {% endblock content %}
 
 {% block script %}
