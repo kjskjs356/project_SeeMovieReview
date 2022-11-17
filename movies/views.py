@@ -13,8 +13,7 @@ def index(request):
             'movies': movies,
         }
         return render(request, 'movies/index.html', context)
-    else:
-        return redirect('accounts:login')
+    return redirect('accounts:login')
 
 
 # @require_safe
@@ -25,15 +24,13 @@ def detail(request, movie_pk):
             'movie': movie,
         }
         return render(request, 'movies/detail.html', context)
-    else:
-        return redirect('accounts:login')
+    return redirect('accounts:login')
 
 
 def search(request):
     if request.user.is_authenticated:
         return render(request, 'movies/search.html')
-    else:
-        return redirect('accounts:login')
+    return redirect('accounts:login')
 
 
 def searched(request):
@@ -44,8 +41,7 @@ def searched(request):
             return render(request, 'movies/searched.html', {'searched': searched, 'movies': movies})
         else:
             return render(request, 'movies/searched.html', {})
-    else:
-        return redirect('accounts:login')
+    return redirect('accounts:login')
 
 
 def like(request, movie_pk):
@@ -70,9 +66,11 @@ def like(request, movie_pk):
 
 
 def likelist(request, username):
-    User = get_user_model()
-    person = User.objects.get(username=username)
-    context = {
-        'person': person,
-    }
-    return render(request, 'movies/likelist.html', context)
+    if request.user.is_authenticated:
+        User = get_user_model()
+        person = User.objects.get(username=username)
+        context = {
+            'person': person,
+        }
+        return render(request, 'movies/likelist.html', context)
+    return redirect('accounts:login')
