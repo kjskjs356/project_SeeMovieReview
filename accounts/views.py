@@ -15,7 +15,7 @@ from .forms import CustomUserChangeForm, CustomUserCreationForm
 @require_http_methods(['GET', 'POST'])
 def login(request):
     if request.user.is_authenticated:
-        return redirect('articles:index')
+        return redirect('movies:index')
 
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
@@ -23,7 +23,7 @@ def login(request):
         if form.is_valid():
             # 로그인
             auth_login(request, form.get_user())
-            return redirect(request.GET.get('next') or 'articles:index')
+            return redirect(request.GET.get('next') or 'movies:index')
     else:
         form = AuthenticationForm()
     context = {
@@ -36,13 +36,13 @@ def login(request):
 def logout(request):
     if request.user.is_authenticated:
         auth_logout(request)
-    return redirect('articles:index')
+    return redirect('movies:index')
 
 
 @require_http_methods(['GET', 'POST'])
 def signup(request):
     if request.user.is_authenticated:
-        return redirect('articles:index')
+        return redirect('movies:index')
         
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -50,7 +50,7 @@ def signup(request):
             user = form.save()
             # 회원가입 후 로그인
             auth_login(request, user)
-            return redirect('articles:index')
+            return redirect('movies:index')
     else:
         form = CustomUserCreationForm()
     context = {
@@ -64,7 +64,7 @@ def delete(request):
     if request.user.is_authenticated:
         request.user.delete()
         auth_logout(request)
-    return redirect('articles:index')
+    return redirect('movies:index')
 
 
 @login_required
@@ -75,7 +75,7 @@ def update(request):
         # form = CustomUserChangeForm(data=request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('articles:index')
+            return redirect('movies:index')
     else:
         form = CustomUserChangeForm(instance=request.user)
     context = {
@@ -93,7 +93,7 @@ def change_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect('articles:index')
+            return redirect('movies:index')
     else:
         form = PasswordChangeForm(request.user)
     context = {
