@@ -1,7 +1,8 @@
-from django.http import JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
-from django.http import JsonResponse, HttpResponseBadRequest
 from .models import Movie
+from django.http import JsonResponse
+from django.contrib.auth import get_user_model
+import json
 
 
 # Create your views here.
@@ -18,12 +19,14 @@ def index(request):
 
 # @require_safe
 def detail(request, movie_pk):
-    # movie = get_object_or_404(Movie.objects.prefetch_related('genres'), pk=movie_pk)
-    movie = get_object_or_404(Movie, pk=movie_pk)
-    context = {
-        'movie': movie,
-    }
-    return render(request, 'movies/detail.html', context)
+    if request.user.is_authenticated:
+        movie = get_object_or_404(Movie, pk=movie_pk)
+        context = {
+            'movie': movie,
+        }
+        return render(request, 'movies/detail.html', context)
+    else:
+        return redirect('accounts:login')
 
 
 def search(request):
@@ -34,24 +37,42 @@ def search(request):
 
 
 def searched(request):
-    if request.method == 'POST':
-        searched = request.POST['search']
-        movies = Movie.objects.filter(title__contains=searched)
-        return render(request, 'movies/searched.html', {'searched': searched, 'movies': movies})
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            searched = request.POST['search']
+            movies = Movie.objects.filter(title__contains=searched)
+            return render(request, 'movies/searched.html', {'searched': searched, 'movies': movies})
+        else:
+            return render(request, 'movies/searched.html', {})
     else:
-        return render(request, 'movies/searched.html', {})
+        return redirect('accounts:login')
 
 
 def like(request, movie_pk):
-    if request.is_ajax():
+    if request.user.is_authenticated:
         movie = get_object_or_404(Movie, pk=movie_pk)
+
         if movie.like_users.filter(pk=request.user.pk).exists():
+            # 좋아요 취소
             movie.like_users.remove(request.user)
             liked = False
         else:
+            # 좋아요 누름
             movie.like_users.add(request.user)
             liked = True
-        context = {'liked': liked, 'count': movie.like_users.count(),}
-        return JsonResponse(context)
-    else:
-        return HttpResponseBadRequest()
+
+        data = {
+            'liked':liked,
+            'like_count':movie.like_users.count(),
+        }
+        return JsonResponse(data)
+    return redirect('accounts:login')
+
+
+def likelist(request, username):
+    User = get_user_model()
+    person = User.objects.get(username=username)
+    context = {
+        'person': person,
+    }
+    return render(request, 'movies/likelist.html', context)

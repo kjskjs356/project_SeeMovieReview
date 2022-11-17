@@ -32,17 +32,13 @@
   {% for movie in person.movie_set.all %}
     <div>{{ movie.title }}</div>
   {% endfor %}
-
   <hr>
-
 
   <h2>{{ person.username }}이 작성한 모든 댓글</h2>
   {% for comment in person.comment_set.all %}
     <div>{{ comment.content }}</div>
   {% endfor %}
-
   <hr>
-
 
   <h2>{{ person.username }}이 좋아요 한 모든 게시글</h2>
   {% for movie in person.like_movies.all %}
