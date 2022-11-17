@@ -1,0 +1,9 @@
+.login {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+  border: 2px solid black;
+	margin: -150px 0 0 -150px;
+	width: 100px;
+	height: 100px;
+}

@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<div class="contain d-flex flex-wrap justify-content-center" id='total'>
+{% for movie in movies %}
+  <a href="{% url 'movies:detail' movie.pk %}">
+    <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="rounded main_img" alt="...">
+  </a>
+{% endfor %}
+</div>
 {% endblock content %}
+
+{% block script %}
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+{% endblock script %}
