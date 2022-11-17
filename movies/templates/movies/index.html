@@ -5,10 +5,11 @@
 {% for movie in movies %}
 <div cass='card-list'>
   <div class="card">
-    <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="card-img-top" alt="...">
+    <a href="{% url 'movies:detail' movie.pk %}">
+      <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="card-img-top" alt="...">
+    </a>
     <div class="card-body">
-      <p class="card-title">{{ movie.title }}</p>
-      <a href="{% url 'movies:detail' movie.pk %}">[detail]</a>
+      {% comment %} <p class="card-title">{{ movie.title }}</p> {% endcomment %}
     </div>
   </div>
 </div>
@@ -19,7 +20,4 @@
 {% block script %}
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
-
-  </script>
 {% endblock script %}
