@@ -12,7 +12,7 @@ from .forms import CustomUserChangeForm, CustomUserCreationForm
 
 
 # Create your views here.
-@require_http_methods(['GET', 'POST'])
+# @require_http_methods(['GET', 'POST'])
 def login(request):
     if request.user.is_authenticated:
         return redirect('movies:index')
@@ -32,14 +32,14 @@ def login(request):
     return render(request, 'accounts/login.html', context)
 
 
-@require_POST
+# @require_POST
 def logout(request):
     if request.user.is_authenticated:
         auth_logout(request)
     return redirect('movies:index')
 
 
-@require_http_methods(['GET', 'POST'])
+# @require_http_methods(['GET', 'POST'])
 def signup(request):
     if request.user.is_authenticated:
         return redirect('movies:index')
@@ -59,7 +59,7 @@ def signup(request):
     return render(request, 'accounts/signup.html', context)
 
 
-@require_POST
+# @require_POST
 def delete(request):
     if request.user.is_authenticated:
         request.user.delete()
@@ -67,10 +67,10 @@ def delete(request):
     return redirect('movies:index')
 
 
-@login_required
-@require_http_methods(['GET', 'POST'])
+# @login_required
+# @require_http_methods(['GET', 'POST'])
 def update(request):
-    if request.method == 'POST':
+    if request.method == 'POST':    
         form = CustomUserChangeForm(request.POST, instance=request.user)
         # form = CustomUserChangeForm(data=request.POST, instance=request.user)
         if form.is_valid():
@@ -84,8 +84,8 @@ def update(request):
     return render(request, 'accounts/update.html', context)
 
 
-@login_required
-@require_http_methods(['GET', 'POST'])
+# @login_required
+# @require_http_methods(['GET', 'POST'])
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -111,7 +111,7 @@ def profile(request, username):
     return render(request, 'accounts/profile.html', context)
 
 
-@require_POST
+# @require_POST
 def follow(request, user_pk):
     if request.user.is_authenticated:
         User = get_user_model()

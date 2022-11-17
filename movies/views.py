@@ -1,16 +1,19 @@
-from django.shortcuts import render, get_object_or_404
-# from django.views.decorators.http import require_safe
+from django.http import JsonResponse
+from django.shortcuts import redirect, render, get_object_or_404
 from django.http import JsonResponse, HttpResponseBadRequest
 from .models import Movie
 
 
 # Create your views here.
 def index(request):
-    movies = Movie.objects.all()
-    context = {
-        'movies': movies,
-    }
-    return render(request, 'movies/index.html', context)
+    if request.user.is_authenticated:
+        movies = Movie.objects.all()
+        context = {
+            'movies': movies,
+        }
+        return render(request, 'movies/index.html', context)
+    else:
+        return redirect('accounts:login')
 
 
 # @require_safe
@@ -24,11 +27,19 @@ def detail(request, movie_pk):
 
 
 def search(request):
-    movies = Movie.objects.all()
-    context = {
-        'movies': movies,
-    }
-    return render(request, 'movies/search.html', context)
+    if request.user.is_authenticated:
+        return render(request, 'movies/search.html')
+    else:
+        return redirect('accounts:login')
+
+
+def searched(request):
+    if request.method == 'POST':
+        searched = request.POST['search']
+        movies = Movie.objects.filter(title__contains=searched)
+        return render(request, 'movies/searched.html', {'searched': searched, 'movies': movies})
+    else:
+        return render(request, 'movies/searched.html', {})
 
 
 def like(request, movie_pk):
