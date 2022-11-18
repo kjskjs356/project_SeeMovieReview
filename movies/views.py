@@ -66,11 +66,9 @@ def like(request, movie_pk):
 
 
 def likelist(request, username):
-    if request.user.is_authenticated:
-        User = get_user_model()
-        person = User.objects.get(username=username)
-        context = {
-            'person': person,
-        }
-        return render(request, 'movies/likelist.html', context)
-    return redirect('accounts:login')
+    User = get_user_model()
+    person = User.objects.get(username=username)
+    context = {
+        'person': person,
+    }
+    return render(request, 'movies/likelist.html', context)

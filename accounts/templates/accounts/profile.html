@@ -40,12 +40,13 @@
   {% endfor %}
   <hr>
 
-  <h2>{{ person.username }}이 좋아요 한 모든 게시글</h2>
+  {% comment %} <h2>{{ person.username }}이 좋아요 한 모든 게시글</h2>
   {% for movie in person.like_movies.all %}
     <div>{{ movie.title }}</div>
-  {% endfor %}
+  {% endfor %} {% endcomment %}
 
-  <a href="{% url 'movies:index' %}">back</a>
+  <a href="{% url 'accounts:update' %}">EDIT</a>
+  <a href="{% url 'movies:index' %}">BACK</a>
 {% endblock content %}
 
 {% block script %}
