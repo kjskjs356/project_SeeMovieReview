@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>좋아요 목록</h1>
+<h1>{{ person.username }}님의 좋아요 목록</h1>
+  {% for movie in person.like_movies.all %}
+  <a href="{% url 'movies:detail' movie.pk %}">
+    <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="rounded main_img" alt="...">
+  </a>
+  {% endfor %}
 
 {% endblock content %}
 
