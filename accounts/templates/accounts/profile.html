@@ -1,52 +1,52 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>{{ person.username }}님의 프로필</h1>
-  <div>
-    {% comment %} 팔로워 : {{ person.followers.all|length }} / 팔로잉 : {{ person.followings.all|length }} {% endcomment %}
-    팔로워 :<span id="followers-count">{{ person.followers.all|length }}</span>
-    팔로잉 :<span id="followings-count">{{ person.followings.all|length }}</span>
+<div class="out-layer">
+  <div class="profile-div">
+    <h2 class="text-center" style="font-family: 'Hanna', sans-serif;
+    ">{{ person.username }}님의 프로필</h1>
+    <br>
+    {% comment %} <div class="follow-div" style="">
+      팔로워 :<span id="followers-count">{{ person.followers.all|length }}</span>
+      팔로잉 :<span id="followings-count">{{ person.followings.all|length }}<span>
+    </div> {% endcomment %}
+    {% comment %} <br> {% endcomment %}
+
+    {% if request.user != person %}
+    <div>
+      <form id="follow-form" data-user-id={{ person.pk }}>
+        {% csrf_token %}
+        {% if request.user in person.followers.all %}
+          <input type="submit" value="언팔로우">
+        {% else %}
+          <input type="submit" value="팔로우">
+        {% endif %}
+      </form>
+    <div>
+    {% endif %}
+
+    {% comment %} <h5>{{ person.username }}님이 작성한 게시글</h2>
+    {% for movie in person.movie_set.all %}
+      <div>{{ movie.title }}</div>
+    {% endfor %}
+    <hr>
+
+    <h5>{{ person.username }}님이 작성한 댓글</h2>
+    {% for comment in person.comment_set.all %}
+      <div>{{ comment.content }}</div>
+    {% endfor %}
+    <hr> {% endcomment %}
+
+    <h5>{{ person.username }}님이 좋아하는 영화</h2>
+    {% for movie in person.like_movies.all %}
+      <div>{{ movie.title }}</div>
+    {% endfor %}
+    
+    <a href="{% url 'accounts:update' %}">정보 수정</a>
+    <a href="{% url 'movies:index' %}">뒤로 가기</a>
   </div>
+</div>
 
-  {% if request.user != person %}
-  <div>
-    {% comment %} <form action="{% url 'accounts:follow' person.pk %}" method="POST"> {% endcomment %} 
-    {% comment %} 폼 태그를 가져와야 하기 때문에 id 값을 만들어 줌 {% endcomment %}
-    {% comment %} data-'' {% endcomment %}
-    <form id="follow-form" data-user-id={{ person.pk }}>
-      {% comment %} <script>
-        const userId = event.target.dataset.userId {% endcomment %}
-        {% comment %} event.target.dataset.userId - camelCase로 {% endcomment %}
-      {% comment %} </script> {% endcomment %}
-      {% csrf_token %}
-      {% if request.user in person.followers.all %}
-        <input type="submit" value="언팔로우">
-      {% else %}
-        <input type="submit" value="팔로우">
-      {% endif %}
-    </form>
-  <div>
-  {% endif %}
-
-  <h2>{{ person.username }}이 작성한 모든 게시글</h2>
-  {% for movie in person.movie_set.all %}
-    <div>{{ movie.title }}</div>
-  {% endfor %}
-  <hr>
-
-  <h2>{{ person.username }}이 작성한 모든 댓글</h2>
-  {% for comment in person.comment_set.all %}
-    <div>{{ comment.content }}</div>
-  {% endfor %}
-  <hr>
-
-  {% comment %} <h2>{{ person.username }}이 좋아요 한 모든 게시글</h2>
-  {% for movie in person.like_movies.all %}
-    <div>{{ movie.title }}</div>
-  {% endfor %} {% endcomment %}
-
-  <a href="{% url 'accounts:update' %}">EDIT</a>
-  <a href="{% url 'movies:index' %}">BACK</a>
 {% endblock content %}
 
 {% block script %}
@@ -89,6 +89,29 @@
         })
     })
   </script>
+
+
+  <style>
+    @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+    
+    .profile-div {
+      max-width: 1200px;
+      max-height: 3000px;
+      padding: 35px;
+      border: 5px solid #ddd;
+      border-radius: 8px;
+      }
+    
+    .out-layer {
+      padding: 0;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+  </style>
 {% endblock script %}
 
 {% comment %} CSRF 공식문서: https://docs.djangoproject.com/en/3.2/ref/csrf/#setting-the-token-on-the-ajax-request {% endcomment %}

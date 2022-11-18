@@ -4,18 +4,47 @@
 
 
 {% block content %}
-<div class="login">
+<div class="out-layer">
+  <div class="login-div">
   <div>
-    <h1>LOGIN</h1>
+    <h1 style="font-family: 'Hanna', sans-serif;">로그인</h1>
   </div>
+  <br>
   <div>
     <form action="" method="POST">
       {% csrf_token %}
       {{ form.as_p }}
-      <input type="submit" class="btn btn-primary">
+      <div style="text-align: center;">
+        <input type="submit" class="btn btn-primary">
+      </div>
     </form>
   </div>
 </div>
+
+
+
+<style>
+
+  @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+  .login-div {
+    max-width: 430px;
+    padding: 35px;
+    border: 5px solid #ddd;
+    border-radius: 8px;
+    }
+  
+  .out-layer {
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+</style>
+
   {% bootstrap_css %}
   {% bootstrap_javascript %}
 {% endblock content %}
