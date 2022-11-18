@@ -1,4 +1,91 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+{% comment %} <link rel="stylesheet" href="{% static 'accounts/css/signup.css' %}"> {% endcomment %}
+<div class="out-layer">
+  <div class="signup-div">
+    <h1 style="font-family: 'Hanna', sans-serif;">회원가입</h1>
+    <br>
+    <form action="{% url 'accounts:signup' %}" method="POST">
+      {% csrf_token %}
+      {% bootstrap_form form layout='inline' %}
+        <br>
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-primary btn-block btn-large" style="font-family: 'Hanna', sans-serif;">회원가입</button>
+        </div>
+    </form>
+  </div>
+</div>
+<style>
+  @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+  .signup-div {
+    max-width: 430px;
+    padding: 35px;
+    border: 5px solid #ddd;
+    border-radius: 8px;
+    }
+  
+  .out-layer {
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+</style>
+{% endblock %}
+
+
+
+
+
+
+
+{% comment %} {% block content %}
+<div class="out-layer">
+    <div class="login-div">
+      <form class="form-group" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+          {{ form.as_p }}
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+          <button type="submit" class="btn btn-outline-secondary ">회원가입</button>
+        </div>
+      </form>
+    </div>
+</div>
+<style>
+    .login-div {
+      max-width: 430px;
+      padding: 35px;
+      border: 5px solid #ddd;
+      border-radius: 8px;
+      }
+    
+    .out-layer {
+      padding: 0;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+{% endblock %} {% endcomment %}
+
+
+
+
+
+{% comment %} {% extends 'base.html' %}
 
 {% block content %}
   <h1>회원가입</h1>
@@ -7,4 +94,4 @@
     {{ form.as_p }}
     <input type="submit">
   </form>
-{% endblock content %}
+{% endblock content %} {% endcomment %}
