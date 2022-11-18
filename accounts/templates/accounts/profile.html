@@ -41,10 +41,12 @@
     {% for movie in person.like_movies.all %}
       <div>{{ movie.title }}</div>
     {% endfor %}
-
+    
+    <a href="{% url 'accounts:update' %}">정보 수정</a>
     <a href="{% url 'movies:index' %}">뒤로 가기</a>
   </div>
 </div>
+
 {% endblock content %}
 
 {% block script %}
