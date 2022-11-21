@@ -3,31 +3,6 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-
-<<<<<<< HEAD
-  <p>개봉일 : {{ movie.released_date }}</p>
-  <p>관객 : {{ movie.popularity }}</p>
-  <p>평점(10점 만점) : {{ movie.vote_avg }}</p>
-  <p>개요 : {{ movie.overview }}</p>
-  <img src="{{ movie.poster_path }}" alt="">
-  
-  <div>
-    <form class="like-form" data-movie-id="{{ movie.pk }}">
-      {% csrf_token %}
-      {% if request.user in movie.like_users.all %}
-        <button id="like-{{ movie.pk }}">좋아요 취소</button>
-      {% else %}
-        <button id="like-{{ movie.pk }}">좋아요</button>
-      {% endif %}
-    </form>
-  </div>
-  <p>
-    <span id="like-count-{{ movie.pk }}">{{ movie.like_users.all|length }}</span>명이 이 영화를 좋아합니다.
-    {% for user in movie.like_users.all %}
-    <a href="{% url 'accounts:profile' user %}">{{ user.username }}</a>
-    {% endfor %}
-  </p>
-=======
 <link rel="stylesheet" href="{% static 'css/detail.css' %}">
 {% comment %} <div class="out-layer"> {% endcomment %}
 
@@ -78,7 +53,6 @@
         <p>{{ movie.overview }}</p>
       </div>
       <br>
->>>>>>> 6506e30dc78db9b370f3681ca0220035bdc8dd52
 
       <img src="{{ movie.poster_path }}" alt="">
       
