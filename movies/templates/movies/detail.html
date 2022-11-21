@@ -1,19 +1,10 @@
 {% extends 'base.html' %}
-
-{% load django_bootstrap5 %}
 {% load static %}
+{% load django_bootstrap5 %}
 
 {% block content %}
-  <div>
-    <h1>{{ movie.title }}</h1>
-  </div>
-  <div class="row no-gutters">
-    <div class="col-md-4" style="text-align:center;">
-      <img src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" class="card-img" alt="{{movie.name}}">
-    </div>
-  <div class="col-md-8";>
 
-  <p>사용자 : {{ person.username }}</p>
+<<<<<<< HEAD
   <p>개봉일 : {{ movie.released_date }}</p>
   <p>관객 : {{ movie.popularity }}</p>
   <p>평점(10점 만점) : {{ movie.vote_avg }}</p>
@@ -32,14 +23,90 @@
   </div>
   <p>
     <span id="like-count-{{ movie.pk }}">{{ movie.like_users.all|length }}</span>명이 이 영화를 좋아합니다.
+    {% for user in movie.like_users.all %}
+    <a href="{% url 'accounts:profile' user %}">{{ user.username }}</a>
+    {% endfor %}
   </p>
+=======
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% comment %} <div class="out-layer"> {% endcomment %}
 
+<div class="background">
+  
+  <div class="movie-title">
+    <h1>{{ movie.title }}</h1>
+  </div> 
+  
+  <div class="flex-container">
+    
+    <div class="flex-item1">
+      <img src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" class="card-img" alt="{{ movie.name }}">
+    </div>
+    
+    <div class="flex-item2">
+      
+      <div class="div-title">
+        <p>개봉일</p>
+      </div>
+      <div class="div-content">
+        <p>{{ movie.released_date }}</p>
+      </div>
+      <br>
+      
+      <div class="div-title">
+        <p>관객</p>
+      </div>
+      <div class="div-content">
+        <p>{{ movie.popularity }}명</p>
+      </div>
+      <br>
+      
+      
+      <div class="div-title">
+        <p>평점(10점 만점)</p>
+      </div>
+      <div class="div-content">
+        <p>{{ movie.vote_avg }}점</p>
+      </div>
+      <br>
+      
+      
+      <div class="div-title">
+        <p>개요</p>
+      </div>
+      <div class="div-content">
+        <p>{{ movie.overview }}</p>
+      </div>
+      <br>
+>>>>>>> 6506e30dc78db9b370f3681ca0220035bdc8dd52
+
+      <img src="{{ movie.poster_path }}" alt="">
+      
+      <div class="like">
+        <form class="like-form" data-movie-id="{{ movie.pk }}">
+          {% csrf_token %}
+          {% if request.user in movie.like_users.all %}
+          <button id="like-{{ movie.pk }}" class="btn btn-outline-dark">♡ LIKE</button>
+
+          {% else %}
+          <button id="like-{{ movie.pk }}" class="btn btn-outline-dark">♥ LIKE</button>
+
+          {% endif %}
+        </form>
+        <p>
+          <span id="like-count-{{ movie.pk }}">{{ movie.like_users.all|length }}</span>명이 이 영화를 좋아합니다.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+  
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
     const forms = document.querySelectorAll('.like-form')
     forms.forEach((form) => {
       form.addEventListener('submit', function(event) {
-
+        
         event.preventDefault()
         const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
         const movieId = form.dataset.movieId
@@ -54,7 +121,7 @@
           const likeBtn = document.querySelector(`#like-${movieId}`)
           const likeCount = document.querySelector(`#like-count-${movieId}`)
 
-          likeBtn.innerText = liked? '좋아요 취소' : '좋아요'
+          likeBtn.innerText = liked? '♥ LIKE' : '♡ LIKE'
 
           likeCount.innerText = res.data.like_count
         })
@@ -68,7 +135,5 @@
 
 {% block script %}
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
 
-  </script>
 {% endblock script %}

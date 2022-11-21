@@ -9,5 +9,4 @@ urlpatterns = [
     path('<int:movie_pk>/like/', views.like, name='like'),
     path('likelist/<str:username>/', views.likelist, name='likelist'),
     path('search/', views.search, name='search'),
-    path('searched/', views.searched, name='searched'),
 ]
