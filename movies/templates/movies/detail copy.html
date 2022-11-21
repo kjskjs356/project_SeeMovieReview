@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% comment %} <div class="out-layer"> {% endcomment %}
+<div class="flex-contianer">
+
+  <div class="movie-title" style="font-family: 'Hanna', sans-serif;">
+    <h1>{{ movie.title }}</h1>
+  </div> 
+
+  <div class="detail-div">
+
+    <div class="poster-div">
+      <img src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" class="card-img" alt="{{ movie.name }}">
+    </div>
+
+    <div class="information-div">
+      
+      <p>개봉일 : {{ movie.released_date }}</p>
+      <p>관객 : {{ movie.popularity }}</p>
+      <p>평점(10점 만점) : {{ movie.vote_avg }}</p>
+      <p>개요 : {{ movie.overview }}</p>
+      <img src="{{ movie.poster_path }}" alt="">
+      
+      <div>
+        <form class="like-form" data-movie-id="{{ movie.pk }}">
+          {% csrf_token %}
+          {% if request.user in movie.like_users.all %}
+          <button id="like-{{ movie.pk }}">좋아요 취소</button>
+          {% else %}
+          <button id="like-{{ movie.pk }}">좋아요</button>
+          {% endif %}
+        </form>
+      </div>
+      <p>
+        <span id="like-count-{{ movie.pk }}">{{ movie.like_users.all|length }}</span>명이 이 영화를 좋아합니다.
+      </p>
+    </div>
+  </div>
+</div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const forms = document.querySelectorAll('.like-form')
+    forms.forEach((form) => {
+      form.addEventListener('submit', function(event) {
+        
+        event.preventDefault()
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+        const movieId = form.dataset.movieId
+        const requestUrl = `http://127.0.0.1:8000/movies/${movieId}/like/`
+        const config = {
+          headers: {'X-CSRFToken': csrftoken},
+          }
+
+        axios.post(requestUrl, {}, config)
+        .then((res) => {
+          const liked = res.data.liked
+          const likeBtn = document.querySelector(`#like-${movieId}`)
+          const likeCount = document.querySelector(`#like-count-${movieId}`)
+
+          likeBtn.innerText = liked? '좋아요 취소' : '좋아요'
+
+          likeCount.innerText = res.data.like_count
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+      })
+    })
+  </script>
+{% endblock content %}
+
+{% block script %}
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+{% endblock script %}
