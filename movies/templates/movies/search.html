@@ -17,23 +17,24 @@
   {% if searched %}
   <h1>유저 목록</h1>
   {% if not users %}
-  <h1>검색 결과가 없습니다.</h1>
+    <p style='text-align: center;'>검색 결과가 없습니다.</p>
   {% else %}
   
   <div class="container">
     <div class="row">
       {% for user in users %}
-      <a href="{% url 'accounts:profile' user %}" class="username">
+      <a href="{% url 'accounts:profile' user %}" class="username" style='text-align: center;'>
         {{ user.username }}
       </a>
       {% endfor %}
     </div>
   </div>
+
   {% endif %}
-  <h1>영화 목록<h1>
-    {% if not movies %}
-    <p>검색 결과가 없습니다.</p>
-    {% else %}
+  <h1>영화 목록</h1>
+  {% if not movies %}
+    <p style='text-align: center;'>검색 결과가 없습니다.</p>
+  {% else %}
 
     <div class="contain d-flex flex-wrap justify-content-center" id='total'>
       {% for movie in movies %}

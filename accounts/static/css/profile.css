@@ -1,7 +1,7 @@
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
     
 .profile-div {
-	max-width: 1200px;
+	width: 500px;
 	max-height: 3000px;
 	padding: 35px;
 	border: 5px solid #ddd;

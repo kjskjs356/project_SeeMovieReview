@@ -17,14 +17,6 @@ h1 {
   height: 50px;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
 .nav-item {
   margin-left: auto;
 }
-
