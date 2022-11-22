@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
 
 {% block content %}
-<h1>{{ person.username }}님의 팔로우 목록</h1>
+<link rel="stylesheet" href="{% static './css/likelist.css' %}">
+
+<br>
+<h1 class="text-center" style="font-family: 'Hanna', sans-serif;">{{ person.username }}님의 팔로우 목록</h1>
 <div class="container">
   <div class="row">
 {% for follow in person.followings.all %}
@@ -11,8 +16,10 @@
 {% endfor %}
   </div>
 </div>
+<br>
+<hr>
 
-<h1>{{ person.username }}님이 좋아하는 영화 목록</h1>
+<h1 class="text-center" style="font-family: 'Hanna', sans-serif;">{{ person.username }}님이 좋아하는 영화 목록</h1>
 <div class="container d-flex flex-wrap" id='total'>
 {% for movie in person.like_movies.all %}
   <a href="{% url 'movies:detail' movie.pk %}">
@@ -24,5 +31,5 @@
 {% endblock content %}
 
 {% block script %}
-
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 {% endblock script %}
