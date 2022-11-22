@@ -9,11 +9,7 @@
 }
 
 .out-layer {
-	position: absolute;
-	top: 40%;
-	left: 50%;
-	padding: 0;
-	margin: -150px 0px 0px -200px;
+	height: 700px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
