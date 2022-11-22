@@ -1,42 +1,54 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>영화 제목을 검색하세요.</h1>
+  <h1>통합 검색창</h1>
   <div class="container">
     <div class="d-flex flex-colum justify-content-center">
-      <form action="{% url 'movies:searched' %}" method='POST'>
+      <form action="{% url 'movies:search' %}" method='POST'>
         {% csrf_token %}
       <div class="row">
-          <input type="search" name="search">
+          <input type="search" name="search" placeholder='아이디 or 영화 제목 검색'>
           <button type="submit">검색</button>
       </form>
       </div>
     </div>
   </div>
+
+  {% if searched %}
+  <h1>유저 목록</h1>
+  {% if not users %}
+  <h1>검색 결과가 없습니다.</h1>
+  {% else %}
+  
+  <div class="container">
+    <div class="row">
+      {% for user in users %}
+      <a href="{% url 'accounts:profile' user %}" class="username">
+        {{ user.username }}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  <h1>영화 목록<h1>
+    {% if not movies %}
+    <p>검색 결과가 없습니다.</p>
+    {% else %}
+
+    <div class="contain d-flex flex-wrap justify-content-center" id='total'>
+      {% for movie in movies %}
+      <a href="{% url 'movies:detail' movie.pk %}">
+        <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="rounded main_img" alt="...">
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  {% endif %}
 {% endblock content %}
 
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-{% comment %} console.log(123)
-const movie_list = document.querySelector('#movie_list')
-const inputTag = document.querySelector('#search')
-
-inputTag.addEventListener('input', function(event) {
-  event.preventDefault()
-  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
-  const name = document.getElementById(#search).value
-
-  axios({
-    method: 'get',
-      url: `/movies/search/`,
-  })
-    .then((res) {
-      console.log(res)
-    })
-})
-
-const movieTag = document.createElement('img') {% endcomment %}
 
 </script>
 {% endblock script %}

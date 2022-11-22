@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static './css/profile.css' %}">
+
 <div class="out-layer">
   <div class="profile-div">
     <h2 class="text-center" style="font-family: 'Hanna', sans-serif;
     ">{{ person.username }}님의 프로필</h1>
     <br>
-    {% comment %} <div class="follow-div" style="">
+    <div class="follow-div" style="">
       팔로워 :<span id="followers-count">{{ person.followers.all|length }}</span>
       팔로잉 :<span id="followings-count">{{ person.followings.all|length }}<span>
-    </div> {% endcomment %}
-    {% comment %} <br> {% endcomment %}
+    </div>
+    <br>
 
     {% if request.user != person %}
     <div>
@@ -25,21 +29,12 @@
     <div>
     {% endif %}
 
-    {% comment %} <h5>{{ person.username }}님이 작성한 게시글</h2>
-    {% for movie in person.movie_set.all %}
-      <div>{{ movie.title }}</div>
-    {% endfor %}
-    <hr>
-
-    <h5>{{ person.username }}님이 작성한 댓글</h2>
-    {% for comment in person.comment_set.all %}
-      <div>{{ comment.content }}</div>
-    {% endfor %}
-    <hr> {% endcomment %}
 
     <h5>{{ person.username }}님이 좋아하는 영화</h2>
     {% for movie in person.like_movies.all %}
-      <div>{{ movie.title }}</div>
+      <div class='container'>
+          <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="rounded like_img" alt="...">
+      </div>
     {% endfor %}
     
     <a href="{% url 'accounts:update' %}">정보 수정</a>
@@ -91,27 +86,4 @@
   </script>
 
 
-  <style>
-    @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-    
-    .profile-div {
-      max-width: 1200px;
-      max-height: 3000px;
-      padding: 35px;
-      border: 5px solid #ddd;
-      border-radius: 8px;
-      }
-    
-    .out-layer {
-      padding: 0;
-      margin: 0;
-      align-items: center;
-      justify-content: center;
-      display: flex;
-      flex-direction: column;
-    }
-
-  </style>
 {% endblock script %}
-
-{% comment %} CSRF 공식문서: https://docs.djangoproject.com/en/3.2/ref/csrf/#setting-the-token-on-the-ajax-request {% endcomment %}

@@ -4,7 +4,8 @@
 
 
 {% block content %}
-<div class="out-layer">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<div class="out-layer" >
   <div class="login-div">
   <div>
     <h1 style="font-family: 'Hanna', sans-serif;">로그인</h1>
@@ -15,36 +16,12 @@
       {% csrf_token %}
       {{ form.as_p }}
       <div style="text-align: center;">
-        <input type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary btn-block btn-large" style="font-family: 'Hanna', sans-serif;">로그인</button>
+        <a href="{% url 'accounts:signup' %}" class="btn btn-warning">회원가입</a>
       </div>
     </form>
   </div>
 </div>
-
-
-
-<style>
-
-  @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-
-  .login-div {
-    max-width: 430px;
-    padding: 35px;
-    border: 5px solid #ddd;
-    border-radius: 8px;
-    }
-  
-  .out-layer {
-    padding: 0;
-    margin: 0;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-  }
-  
-</style>
-
   {% bootstrap_css %}
   {% bootstrap_javascript %}
 {% endblock content %}

@@ -1,0 +1,51 @@
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+.background {
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
+
+.movie-title {
+  font-family: 'Hanna', sans-serif;
+}
+
+.flex-container { 
+  display: flex; 
+  max-width: 1400px;
+  justify-content: space-evenly;
+  align-items: center; 
+  align-content: stretch;
+  /* padding: 15px; */
+  margin: 20px;
+  border: 5px solid gray;
+  border-radius: 8px;
+} 
+
+.flex-item1 {
+  /* flex-shrink: ; */
+  flex: 1;
+  align-content: stretch;
+  height: 100%;
+  /* width: 50%; */
+  margin: 10px;
+  
+}
+
+.flex-item2 {
+  flex: 2;
+  width: 50%;
+  margin: 10px;
+  
+}
+
+.div-title {
+  font-size: X-large;
+  font-family: 'Hanna', sans-serif;
+
+}
+
+.div-content {
+  font-family: 'Jeju Gothic', sans-serif;
+} 
