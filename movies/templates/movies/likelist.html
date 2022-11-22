@@ -1,8 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{ person.username }}님의 좋아요 목록</h1>
-<div class="contain d-flex flex-wrap justify-content-center" id='total'>
+<h1>{{ person.username }}님의 팔로우 목록</h1>
+<div class="container">
+  <div class="row">
+{% for follow in person.followings.all %}
+  <a href="{% url 'accounts:profile' follow %}" style='text-align: center; text-decoration: none;'>
+  {{ follow.username}}
+  </a>
+{% endfor %}
+  </div>
+</div>
+
+<h1>{{ person.username }}님이 좋아하는 영화 목록</h1>
+<div class="container d-flex flex-wrap" id='total'>
 {% for movie in person.like_movies.all %}
   <a href="{% url 'movies:detail' movie.pk %}">
     <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="rounded main_img" alt="...">

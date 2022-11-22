@@ -23,7 +23,7 @@
   <div class="container">
     <div class="row">
       {% for user in users %}
-      <a href="{% url 'accounts:profile' user %}" class="username" style='text-align: center;'>
+      <a href="{% url 'accounts:profile' user %}" class="username" style='text-align: center; text-decoration: none;'>
         {{ user.username }}
       </a>
       {% endfor %}

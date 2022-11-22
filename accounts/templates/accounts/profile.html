@@ -9,7 +9,7 @@
   <div class="profile-div">
     <h2 class="text-center" style="font-family: 'Hanna', sans-serif;">{{ person.username }}님의 프로필</h1>
     <br>
-    <div class="follow-div" style="">
+    <div class="follow-div">
       팔로워 :<span id="followers-count">{{ person.followers.all|length }}</span>
       팔로잉 :<span id="followings-count">{{ person.followings.all|length }}<span>
     </div>
@@ -30,7 +30,7 @@
 
 
     <h2>{{ person.username }}님이 좋아하는 영화</h2>
-    <div class='container' style='max-width: 500px; flex-wrap: wrap;'>
+    <div class='container' style='max-width: 400px; flex-wrap: wrap;'>
     {% for movie in person.like_movies.all %}
       <a href="{% url 'movies:detail' movie.pk %}">
         <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="rounded like_img" alt="..." style='width: 80px; height: 100px;'>
@@ -38,7 +38,9 @@
         {% endfor %}
     </div>
     
+    {% if request.user == person %}
     <a href="{% url 'accounts:update' %}">정보 수정</a>
+    {% endif %}
     <a href="{% url 'movies:index' %}">뒤로 가기</a>
   </div>
 </div>
@@ -88,3 +90,4 @@
 
 
 {% endblock script %}
+

@@ -1,6 +1,6 @@
 .main_img {
-  width: 400px;
-  height: 500px;
+  width: 250px;
+  height: 350px;
   margin: auto;
   margin-top: 5rem;
   margin-bottom: 5rem;
@@ -19,4 +19,8 @@ h1 {
 
 .nav-item {
   margin-left: auto;
+}
+
+.navbar {
+  background-color: beige;
 }
