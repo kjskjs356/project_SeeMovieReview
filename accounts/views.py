@@ -121,14 +121,3 @@ def follow(request, user_pk):
             return JsonResponse(context)
         return redirect('accounts:profile', you.username)
     return redirect('accounts:login')
-
-
-# def search_user(request):
-#     if request.user.is_authenticated:
-#         if request.method == 'POST':
-#             searched = request.POST['search_user']
-#             User = get_user_model()
-#             users = User.objects.filter(username__contains=searched)
-#             return render(request, 'accounts/search_user.html', {'searched': searched, 'users': users})
-#         return render(request, 'accounts/search_user.html')
-#     return redirect('accounts:login')

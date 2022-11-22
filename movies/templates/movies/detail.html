@@ -60,10 +60,10 @@
         <form class="like-form" data-movie-id="{{ movie.pk }}">
           {% csrf_token %}
           {% if request.user in movie.like_users.all %}
-          <button id="like-{{ movie.pk }}" class="btn btn-outline-dark">♡ LIKE</button>
+          <button id="like-{{ movie.pk }}" class="btn btn-outline-dark">♥ LIKE</button>
 
           {% else %}
-          <button id="like-{{ movie.pk }}" class="btn btn-outline-dark">♥ LIKE</button>
+          <button id="like-{{ movie.pk }}" class="btn btn-outline-dark">♡ LIKE</button>
 
           {% endif %}
         </form>
