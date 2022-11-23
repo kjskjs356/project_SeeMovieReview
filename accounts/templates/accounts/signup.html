@@ -7,14 +7,15 @@
 <link rel="stylesheet" href="{% static './css/signup.css' %}">
 <div class="out-layer">
   <div class="signup-div">
-    <h1 style="font-family: 'Hanna', sans-serif;">회원가입</h1>
+    <h1 class="title-signup">회원가입</h1>
     <br>
     <form action="{% url 'accounts:signup' %}" method="POST">
       {% csrf_token %}
       {% bootstrap_form form layout='inline' %}
         <br>
         <div style="text-align: center;">
-          <button type="submit" class="btn btn-primary btn-block btn-large" style="font-family: 'Hanna', sans-serif;">회원가입</button>
+          <button type="submit" class="btn btn-outline-dark btn-block btn-large float-start" style="font-family: 'Hanna', sans-serif;">회원가입</button>
+          <button type="button" class="btn btn-dark float-end" style="font-family: 'Hanna', sans-serif;" onclick="location.href={% url 'movies:index' %}">뒤로 가기</button>
         </div>
     </form>
   </div>

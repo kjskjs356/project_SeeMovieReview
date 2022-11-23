@@ -17,3 +17,13 @@
 	align-items: center;
 	flex-direction: column;
 }
+
+.title-update {
+	text-align: center;
+	font-family: 'Hanna', sans-serif;
+}
+
+.button-update {
+	text-align: center;
+	font-family: 'Hanna', sans-serif;
+}

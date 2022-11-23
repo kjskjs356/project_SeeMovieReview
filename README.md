@@ -78,7 +78,7 @@
 
 # ERD
 
-![](README_assets/2022-11-23-11-04-49-image.png)
+![](README_assets/2022-11-23-12-34-35-image.png)
 
 # Fixture
 
@@ -129,6 +129,14 @@
 
 # MODEL
 
+- ### accounts
+  
+  ![](README_assets/2022-11-23-12-31-07-image.png)
+
+- ### movies
+  
+  ![](README_assets/2022-11-23-12-35-15-image.png)
+
 # URL
 
 - ### accounts app
@@ -146,6 +154,8 @@
   - /accounts/password/ : 비밀번호 수정 화면
   
   - /accounts/profile/<<str:username>>/ :  유저 정보 화면
+  
+  - /<<int:user_pk>>/follow/ : 유저 팔로우 기능
 
 - ### movies app
   
@@ -185,7 +195,7 @@
     
     - Profile : Login 되어 있는 User에 대한 팔로워, 팔로잉 수 & 좋아요한 영화 목록 표시
     
-    - Logout : User Logout
+    - Logout : 로그인 되어 있는 유저 로그아웃
   
   - #### 미 로그인 시
     

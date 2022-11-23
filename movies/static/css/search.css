@@ -1,1 +1,26 @@
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+
+.title-search {
+  font-family: 'Hanna', sans-serif;
+}
+
+
+.title-userlist {
+  font-family: 'Hanna', sans-serif;
+}
+
+
+.title-movielist {
+  font-family: 'Hanna', sans-serif;
+}
+
+
+.nosearch {
+  text-align: center;
+}
+
+.username {
+  text-align: center;
+  text-decoration: none;
+}

@@ -7,8 +7,8 @@
 
 <div class="out-layer">
   <div class="profile-div">
-    <h2 class="text-center" style="font-family: 'Hanna', sans-serif;">{{ person.last_name }}{{person.first_name }}님의 프로필</h1>
-    <hr>
+    <h2 class="title-profile">{{ person.last_name }}{{person.first_name }}님의 프로필</h1>
+    <br>
     <div class="follow-div">
       팔로워 :<span id="followers-count">{{ person.followers.all|length }}</span><br>
       팔로잉 :<span id="followings-count">{{ person.followings.all|length }}<span>
@@ -20,30 +20,35 @@
       <form id="follow-form" data-user-id={{ person.pk }}>
         {% csrf_token %}
         {% if request.user in person.followers.all %}
-          <button type="submit" class="btn btn-outline-dark btn-block btn-large" style="font-family: 'Hanna', sans-serif;">언팔로우</button>
-          {% else %}
-          <button type="submit" class="btn btn-outline-dark btn-block btn-large" style="font-family: 'Hanna', sans-serif;">팔로우</button>
+        <button type="submit" class="btn btn-outline-dark btn-block btn-large" style="font-family: 'Hanna', sans-serif;">언팔로우</button>
+        {% else %}
+        <button type="submit" class="btn btn-outline-dark btn-block btn-large" style="font-family: 'Hanna', sans-serif;">팔로우</button>
         {% endif %}
       </form>
-    </div>
-    {% endif %}
-
-    <hr>
-    <h2 class="text-center" style="font-family: 'Hanna', sans-serif;">{{ person.last_name }}{{person.first_name }}님이 좋아하는 영화</h2>
-    <div class='container' style='max-width: 500px; flex-wrap: wrap;'>
-    {% for movie in person.like_movies.all %}
-      <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="rounded" style="width: 80px; height: 100px;" onclick="location.href='{% url 'movies:detail' movie.pk %}'">
-    {% endfor %}
+      {% endif %}
+      
+      <hr>
+      <h2 class="text-profile">{{ person.last_name }}{{person.first_name }}님이 좋아하는 영화</h2>
+      <br>
+      <div class='container'>
+        {% for movie in person.like_movies.all %}
+        <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="rounded" onclick="location.href='{% url 'movies:detail' movie.pk %}'">
+        {% endfor %}
         
-    </div>
-    <br>
+      </div>
+      <br>
     {% if request.user == person %}
     <button type="button" class="btn btn-outline-dark" style="font-family: 'Hanna', sans-serif;" onclick="location.href='/accounts/update/'">정보 수정</button>
+    <form action="{% url 'accounts:delete' %}" method="POST" class="float-end">
+      {% csrf_token %}
+      <button type="submit" style="font-family: 'Hanna', sans-serif;" class="btn btn-danger">회원 탈퇴</button>
+    </form>
     {% endif %}
     <button type="button" class="btn btn-dark" style="font-family: 'Hanna', sans-serif;" onclick="location.href={% url 'movies:index' %}">뒤로 가기</button>
+    </div>
   </div>
 </div>
-
+  
 {% endblock content %}
 
 {% block script %}
