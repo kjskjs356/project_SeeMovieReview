@@ -4,20 +4,21 @@
 
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static './css/login.css' %}">
 <div class="out-layer" >
   <div class="login-div">
-  <div>
-    <h1 style="font-family: 'Hanna', sans-serif;">로그인</h1>
-  </div>
+    <div>
+      <h1 class="title-login">로그인</h1>
+    </div>
   <br>
   <div>
     <form action="" method="POST">
       {% csrf_token %}
       {{ form.as_p }}
-      <div style="text-align: center;">
-        <button type="submit" class="btn btn-outline-dark btn-block btn-large" style="font-family: 'Hanna', sans-serif;">로그인</button>
-        <a href="{% url 'accounts:signup' %}" class="btn btn-dark" style="font-family: 'Hanna', sans-serif;">회원가입</a>
+      <br>
+      <div class="button-login">
+        <button type="submit" class="btn btn-outline-dark btn-block btn-large">로그인</button>
+        <a href="{% url 'accounts:signup' %}" class="btn btn-dark">회원가입</a>
       </div>
     </form>
   </div>
