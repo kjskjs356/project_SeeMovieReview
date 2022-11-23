@@ -39,10 +39,9 @@
         
     </div>
     <br>
+    {% if request.user == user %}
     <button type="button" class="btn btn-outline-dark" onclick="location.href='/accounts/update/'">정보 수정</button>
-    {% comment %} <button class="btn btn-outline-dark">
-      <a href="{% url 'accounts:update' %}">정보 수정</a>
-    </button>  {% endcomment %}
+    {% endif %}
     <button class="btn btn-outline-dark" onclick="location.href={% url 'movies:index' %}">뒤로 가기</button>
   </div>
 </div>
