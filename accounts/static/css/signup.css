@@ -18,3 +18,14 @@
 	align-items: center;
 	flex-direction: column;
 }
+
+
+.title-signup {
+	font-family: 'Hanna', sans-serif;
+}
+
+
+.button-signup {
+	text-align: center;
+	font-family: 'Hanna', sans-serif;
+}
