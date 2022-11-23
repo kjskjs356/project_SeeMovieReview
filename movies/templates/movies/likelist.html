@@ -23,7 +23,7 @@
 <div class="container d-flex flex-wrap" id='total'>
 {% for movie in person.like_movies.all %}
   <a href="{% url 'movies:detail' movie.pk %}">
-    <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="rounded main_img" alt="...">
+    <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="rounded like_img" alt="...">
   </a>
 {% endfor %}
 </div>

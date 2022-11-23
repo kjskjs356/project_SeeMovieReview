@@ -8,6 +8,17 @@
   margin-right: 2rem;
 }
 
+
+.like_img {
+  width: 250px;
+  height: 350px;
+  margin: auto;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
 h1 {
   text-align: center;
 }

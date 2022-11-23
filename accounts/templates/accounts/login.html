@@ -16,8 +16,8 @@
       {% csrf_token %}
       {{ form.as_p }}
       <div style="text-align: center;">
-        <button type="submit" class="btn btn-primary btn-block btn-large" style="font-family: 'Hanna', sans-serif;">로그인</button>
-        <a href="{% url 'accounts:signup' %}" class="btn btn-warning">회원가입</a>
+        <button type="submit" class="btn btn-outline-dark btn-block btn-large" style="font-family: 'Hanna', sans-serif;">로그인</button>
+        <a href="{% url 'accounts:signup' %}" class="btn btn-dark" style="font-family: 'Hanna', sans-serif;">회원가입</a>
       </div>
     </form>
   </div>
