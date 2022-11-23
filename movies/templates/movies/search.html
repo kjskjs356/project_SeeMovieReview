@@ -1,39 +1,52 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
 
 {% block content %}
-  <h1>통합 검색창</h1>
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+  <br>
   <div class="container">
+    <h1 class="text-center" style="font-family: 'Hanna', sans-serif;">통합 검색창</h1>
     <div class="d-flex flex-colum justify-content-center">
       <form action="{% url 'movies:search' %}" method='POST'>
         {% csrf_token %}
-      <div class="row">
-          <input type="search" name="search" placeholder='아이디 or 영화 제목 검색'>
-          <button type="submit">검색</button>
-      </form>
+        <div class="row">
+          <input type="search" class="form-control me-2" name="search" placeholder='아이디 or 영화 제목 검색'>
+          <button type="submit" class="btn btn-dark">검색</button>
+        </form>
       </div>
     </div>
   </div>
+  <br>
+  <br>
+
 
   {% if searched %}
-  <h1>유저 목록</h1>
+  <h1 class="text-center" style="font-family: 'Hanna', sans-serif;">유저 목록</h1>
   {% if not users %}
-  <h1>검색 결과가 없습니다.</h1>
+    <br>
+    <p style='text-align: center;'>검색 결과가 없습니다.</p>
   {% else %}
   
   <div class="container">
     <div class="row">
       {% for user in users %}
-      <a href="{% url 'accounts:profile' user %}" class="username">
+      <a href="{% url 'accounts:profile' user %}" class="username" style='text-align: center; text-decoration: none;'>
         {{ user.username }}
       </a>
       {% endfor %}
     </div>
   </div>
+
+
+
   {% endif %}
-  <h1>영화 목록<h1>
-    {% if not movies %}
-    <p>검색 결과가 없습니다.</p>
-    {% else %}
+  <br>
+  <br>
+  <h1 class="text-center" style="font-family: 'Hanna', sans-serif;">영화 목록</h1>
+  {% if not movies %}
+    <p style='text-align: center;'>검색 결과가 없습니다.</p>
+  {% else %}
 
     <div class="contain d-flex flex-wrap justify-content-center" id='total'>
       {% for movie in movies %}

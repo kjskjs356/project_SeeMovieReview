@@ -2,3 +2,4 @@ __pycache__
 .DS_Store
 venv
 db.sqlite3
+0001_initial.py
