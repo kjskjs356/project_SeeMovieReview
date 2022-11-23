@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{% static './css/likelist.css' %}">
 
 <br>
-<h1 class="text-center" style="font-family: 'Hanna', sans-serif;">{{ person.username }}님의 팔로우 목록</h1>
+<h1 class="text-center" style="font-family: 'Hanna', sans-serif;">{{ person.last_name }}{{person.first_name }}님의 팔로우 목록</h1>
 <div class="container">
   <div class="row">
 {% for follow in person.followings.all %}
@@ -19,7 +19,7 @@
 <br>
 <hr>
 
-<h1 class="text-center" style="font-family: 'Hanna', sans-serif;">{{ person.username }}님이 좋아하는 영화 목록</h1>
+<h1 class="text-center" style="font-family: 'Hanna', sans-serif;">{{ person.last_name }}{{person.first_name }}님이 좋아하는 영화 목록</h1>
 <div class="container d-flex flex-wrap" id='total'>
 {% for movie in person.like_movies.all %}
   <a href="{% url 'movies:detail' movie.pk %}">
