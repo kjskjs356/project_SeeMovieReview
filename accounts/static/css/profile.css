@@ -1,13 +1,5 @@
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
     
-.profile-div {
-	width: 500px;
-	max-height: 3000px;
-	padding: 20px;
-	border: 5px solid gray;
-	border-radius: 8px;
-}
-
 .out-layer {
 	height: 700px;
 	display: flex;
@@ -17,7 +9,37 @@
 }
 
 
+.profile-div {
+	width: 500px;
+	max-height: 3000px;
+	padding: 20px;
+	border: 5px solid gray;
+	border-radius: 8px;
+}
+
+.title-profile {
+	text-align: center;
+	font-family: 'Hanna', sans-serif;
+}
+
+
 .follow-div {
 	font-family: 'Hanna', sans-serif;
 	font-size: large;
+}
+
+
+.text-profile {
+	text-align: center;
+	font-family: 'Hanna', sans-serif;
+}
+
+
+.container {
+	max-width: 500px; flex-wrap: wrap;
+}
+
+
+.rounded {
+	width: 80px; height: 100px;
 }
