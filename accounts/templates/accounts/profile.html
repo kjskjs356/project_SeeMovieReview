@@ -39,9 +39,13 @@
     <br>
     {% if request.user == person %}
     <button type="button" class="btn btn-outline-dark" style="font-family: 'Hanna', sans-serif;" onclick="location.href='/accounts/update/'">정보 수정</button>
+    <form action="{% url 'accounts:delete' %}" method="POST" class="float-end">
+      {% csrf_token %}
+      <button type="submit" style="font-family: 'Hanna', sans-serif;" class="btn btn-danger">회원 탈퇴</button>
+    </form>
     {% endif %}
     <button type="button" class="btn btn-dark" style="font-family: 'Hanna', sans-serif;" onclick="location.href={% url 'movies:index' %}">뒤로 가기</button>
-  </div>
+    </div>
 </div>
 
 {% endblock content %}
