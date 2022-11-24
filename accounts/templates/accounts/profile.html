@@ -64,9 +64,7 @@
         method: 'post',
         url: `/accounts/${userId}/follow/`,
         headers: {'X-CSRFToken': csrftoken},
-        // 1. url
-        // 2. method
-        // 3. csrf_token
+
       })
       .then((response) => {
         const isFollowed = response.data.is_followed

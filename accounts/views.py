@@ -42,7 +42,6 @@ def signup(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            # 회원가입 후 로그인
             return redirect('movies:index')
     else:
         form = CustomUserCreationForm()

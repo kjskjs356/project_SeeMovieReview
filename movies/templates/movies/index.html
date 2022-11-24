@@ -7,7 +7,7 @@
 
 <br>
 <h1 class="title-index" style="font-family: 'Hanna', sans-serif;">전체 영화</h1>
-<div class="contain d-flex flex-wrap justify-content-center" id='total'>
+<div class="contain d-flex flex-wrap justify-content-center">
 {% for movie in movies %}
   <a href="{% url 'movies:detail' movie.pk %}">
     <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" class="rounded main_img" alt="...">
